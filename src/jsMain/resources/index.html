@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 마니또</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        // 환경변수 설정 (Vercel 환경변수에서 주입)
+        window.ENV = {
+            API_BASE_URL: '%VITE_API_BASE_URL%' !== '%' + 'VITE_API_BASE_URL%' 
+                ? '%VITE_API_BASE_URL%' 
+                : 'http://localhost:8080',
+            GOOGLE_CLIENT_ID: '%VITE_GOOGLE_CLIENT_ID%' !== '%' + 'VITE_GOOGLE_CLIENT_ID%'
+                ? '%VITE_GOOGLE_CLIENT_ID%'
+                : '772988401705-4io9tviphr75k075kb9lbrnmn960h2r8.apps.googleusercontent.com'
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="manitto.js"></script>
+</body>
+</html>

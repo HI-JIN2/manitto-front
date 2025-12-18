@@ -1,0 +1,10 @@
+{
+  "buildCommand": "./gradlew jsBrowserDistribution",
+  "outputDirectory": "build/dist/js/productionExecutable",
+  "installCommand": "echo 'Using Gradle'",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+
