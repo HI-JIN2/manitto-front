@@ -16,7 +16,7 @@ fun GradientBackground(content: @Composable () -> Unit) {
             alignItems(AlignItems.Center)
             justifyContent(JustifyContent.Center)
             background("linear-gradient(135deg, #667eea 0%, #764ba2 100%)")
-            padding(20.px)
+            padding(16.px)
         }
     }) {
         content()
@@ -29,12 +29,15 @@ fun Card(content: @Composable () -> Unit) {
         style {
             backgroundColor(Color.white)
             borderRadius(20.px)
-            padding(40.px)
+            padding(24.px)
             property("box-shadow", "0 10px 40px rgba(0,0,0,0.2)")
-            minWidth(350.px)
+            width(100.percent)
             maxWidth(450.px)
             textAlign("center")
+            property("box-sizing", "border-box")
         }
+        // 미디어 쿼리는 CSS로 처리
+        classes("card-container")
     }) {
         content()
     }
@@ -51,11 +54,12 @@ fun Spacer(height: CSSNumeric) {
 fun Title(text: String) {
     H1({
         style {
-            fontSize(28.px)
+            fontSize(24.px)
             fontWeight(700)
             color(Color("#333"))
             marginBottom(10.px)
             marginTop(0.px)
+            property("word-break", "keep-all")
         }
     }) {
         Text(text)
@@ -67,7 +71,9 @@ fun Subtitle(text: String) {
     P({
         style {
             color(Color("#666"))
-            marginBottom(30.px)
+            marginBottom(20.px)
+            fontSize(14.px)
+            property("word-break", "keep-all")
         }
     }) {
         Text(text)
@@ -86,13 +92,15 @@ fun TextField(
     Input(type) {
         style {
             width(100.percent)
-            padding(15.px)
+            padding(14.px)
             fontSize(16.px)
             border(1.px, LineStyle.Solid, Color("#ddd"))
             borderRadius(10.px)
-            marginBottom(15.px)
+            marginBottom(12.px)
             property("outline", "none")
             property("box-sizing", "border-box")
+            // iOS 확대 방지
+            property("-webkit-appearance", "none")
         }
         value(value)
         placeholder(placeholder)
@@ -111,7 +119,7 @@ fun PrimaryButton(
     Button({
         style {
             width(100.percent)
-            padding(15.px)
+            padding(14.px)
             fontSize(16.px)
             fontWeight(600)
             color(Color.white)
@@ -120,6 +128,7 @@ fun PrimaryButton(
             borderRadius(10.px)
             cursor(if (enabled) "pointer" else "not-allowed")
             property("transition", "all 0.3s")
+            property("-webkit-tap-highlight-color", "transparent")
         }
         onClick { if (enabled) onClick() }
         if (!enabled) disabled()
@@ -136,7 +145,7 @@ fun SecondaryButton(
     Button({
         style {
             width(100.percent)
-            padding(15.px)
+            padding(14.px)
             fontSize(16.px)
             fontWeight(600)
             color(Color("#667eea"))
@@ -146,6 +155,7 @@ fun SecondaryButton(
             cursor("pointer")
             marginTop(10.px)
             property("transition", "all 0.3s")
+            property("-webkit-tap-highlight-color", "transparent")
         }
         onClick { onClick() }
     }) {
@@ -161,7 +171,7 @@ fun KakaoShareButton(
     Button({
         style {
             width(100.percent)
-            padding(15.px)
+            padding(14.px)
             fontSize(16.px)
             fontWeight(600)
             color(Color("#3C1E1E"))
@@ -171,6 +181,7 @@ fun KakaoShareButton(
             cursor("pointer")
             marginTop(10.px)
             property("transition", "all 0.3s")
+            property("-webkit-tap-highlight-color", "transparent")
         }
         onClick { onClick() }
     }) {
@@ -188,6 +199,7 @@ fun NavLink(text: String, onClick: () -> Unit) {
             marginTop(20.px)
             display(DisplayStyle.InlineBlock)
             cursor("pointer")
+            property("-webkit-tap-highlight-color", "transparent")
         }
         onClick { onClick() }
     }) {
@@ -203,10 +215,12 @@ fun SuccessMessage(text: String) {
         style {
             color(Color("#28a745"))
             fontWeight(600)
-            marginTop(20.px)
-            padding(15.px)
+            marginTop(16.px)
+            padding(14.px)
             backgroundColor(Color("#d4edda"))
             borderRadius(10.px)
+            fontSize(14.px)
+            property("word-break", "keep-all")
         }
     }) {
         Text(text)
@@ -219,10 +233,12 @@ fun ErrorMessage(text: String) {
         style {
             color(Color("#dc3545"))
             fontWeight(600)
-            marginTop(20.px)
-            padding(15.px)
+            marginTop(16.px)
+            padding(14.px)
             backgroundColor(Color("#f8d7da"))
             borderRadius(10.px)
+            fontSize(14.px)
+            property("word-break", "keep-all")
         }
     }) {
         Text(text)
@@ -233,13 +249,14 @@ fun ErrorMessage(text: String) {
 fun ResultBox(text: String) {
     Div({
         style {
-            marginTop(30.px)
-            padding(25.px)
+            marginTop(24.px)
+            padding(20.px)
             backgroundColor(Color("#fff3cd"))
             borderRadius(15.px)
-            fontSize(24.px)
+            fontSize(20.px)
             fontWeight(700)
             color(Color("#856404"))
+            property("word-break", "keep-all")
         }
     }) {
         Text(text)
@@ -259,6 +276,7 @@ fun ParticipantItem(email: String) {
             fontSize(14.px)
             color(Color("#555"))
             textAlign("left")
+            property("word-break", "break-all")
         }
     }) {
         Text("👤 $email")
@@ -269,7 +287,8 @@ fun ParticipantItem(email: String) {
 fun LoadingSpinner() {
     Div({
         style {
-            fontSize(24.px)
+            fontSize(20.px)
+            padding(20.px)
         }
     }) {
         Text("⏳ 로딩 중...")
