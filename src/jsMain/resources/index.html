@@ -2,7 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
     <title>🎁 마니또</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,13 +25,49 @@
             box-sizing: border-box;
         }
         
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+        
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
         
         #root {
             min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+        
+        /* 모바일 터치 하이라이트 제거 */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* 입력 필드 스타일 통일 */
+        input, button {
+            font-family: inherit;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        /* PC에서 카드 크기 조정 */
+        @media (min-width: 768px) {
+            .card-container {
+                padding: 40px !important;
+            }
+        }
+        
+        /* 모바일에서 Safe Area 대응 (iPhone X+) */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(0px, env(safe-area-inset-left));
+                padding-right: max(0px, env(safe-area-inset-right));
+                padding-bottom: max(0px, env(safe-area-inset-bottom));
+            }
         }
     </style>
 </head>
